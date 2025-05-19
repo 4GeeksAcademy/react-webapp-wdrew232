@@ -4,11 +4,11 @@ import ContactCard from "../components/ContactCard"; // Import ContactCard
 
 const Contacts = () => {
   const { state, dispatch } = useContactContext(); // Access context
-  const [contact, setContact] = useState({ id: null, name: "", email: "" });
+  const [contact, setContact] = useState({ id: null, name: "", email: "", address: "", image: "" });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!contact.name || !contact.email) {
+    if (!contact.name || !contact.email || !contact.address || !contact.image) {
       alert("Please fill in all fields.");
       return;
     }
@@ -19,7 +19,7 @@ const Contacts = () => {
       dispatch({ type: "ADD_CONTACT", payload: { ...contact, id: Date.now() } });
     }
 
-    setContact({ id: null, name: "", email: "" });
+    setContact({ id: null, name: "", email: "", address: "", image: "" });
   };
 
   return (
@@ -39,6 +39,18 @@ const Contacts = () => {
           placeholder="Email"
           value={contact.email}
           onChange={(e) => setContact({ ...contact, email: e.target.value })}
+        />
+        <input
+          type="text"
+          placeholder="Address"
+          value={contact.address}
+          onChange={(e) => setContact({ ...contact, address: e.target.value })}
+        />
+        <input
+          type="text"
+          placeholder="Image URL"
+          value={contact.image}
+          onChange={(e) => setContact({ ...contact, image: e.target.value })}
         />
         <button type="submit">{contact.id ? "Update Contact" : "Add Contact"}</button>
       </form>

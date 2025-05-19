@@ -18,8 +18,12 @@ const ContactCard = ({ contact, setContact }) => {
 
   return (
     <div className="contact-card">
-      <h3>{contact.name}</h3>
-      <p>{contact.email}</p>
+      <img src="https://picsum.photos/50/51" alt="Random Contact Image" className="contact-image" />
+      <div className="contact-details">
+        <h3>{contact.name}</h3>
+        <p>{contact.email}</p>
+        <p>{contact.address}</p>
+      </div>
       <button onClick={handleEdit} className="edit-btn">Edit</button>
       <button onClick={handleDelete} className="delete-btn">Delete</button>
     </div>
